@@ -1,0 +1,27 @@
+{
+  "name": "cyber-chat",
+  "version": "1.0.0",
+  "description": "a client server chat app",
+  "main": "ws-server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skywalker212/cyber-chat.git"
+  },
+  "keywords": [
+    "chat",
+    "ws",
+    "socket"
+  ],
+  "author": "Akash Gajjar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/skywalker212/cyber-chat/issues"
+  },
+  "homepage": "https://github.com/skywalker212/cyber-chat#readme",
+  "dependencies": {
+    "ws": "^3.2.0"
+  }
+}
