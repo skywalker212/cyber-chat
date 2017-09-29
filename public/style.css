@@ -11,9 +11,13 @@
   margin-left: 20px;
 }
 
-.label{
+.label {
   font-weight: bold;
-  color: white;
+  color: white;}
+
+.serv-label {
+  font-weight: bold;
+  color: rgb(233, 72, 72);
 }
 
 #message {
