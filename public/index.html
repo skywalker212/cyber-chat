@@ -44,7 +44,10 @@
     }
 
     ws.onmessage = function (payload) {
-      printMessage(payload.data);
+      if(payload.data=='clear'){
+        $('.messages').empty();
+      }
+      else printMessage(payload.data);
     }
     
     $('#message').bind('keydown', (e) => {
