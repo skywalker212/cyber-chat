@@ -13,7 +13,7 @@ const wss = new SocketServer({ server:app });
 
 wss.on('connection', function(ws) {
   ws.send('<span class="serv-label">Server> </span>W3lc0m3 70 cyb3r cha7.');
-  ws.send("<span class='serv-label'>Server> </span>please use 'username:&lt;nick&gt;' to set a nickname, otherwise you defalut nick will be anon(id)");
+  ws.send("<span class='serv-label'>Server> </span>please use 'username:&lt;nick&gt;' to set a nickname, otherwise your default nick will be anon(id)");
   ws.send("<span class='serv-label'>Server> </span>use Shift+Enter for multiline message.");
   ws.send("<span class='serv-label'>Server> </span>use 'exit' to disconnect from the server.");
   ws.id = 'anon' + cid;
@@ -23,8 +23,8 @@ wss.on('connection', function(ws) {
   });
   ws.on('message', function(message) {
     if (message === 'exit') {
-      messages.push(`Client ${ws.id} Disonnected`);
-      sendToAll(`Client ${ws.id} Disonnected`);
+      messages.push(`Client ${ws.id} Disconnected`);
+      sendToAll(`Client ${ws.id} Disconnected`);
       ws.close();
     } else if (message.indexOf('username:') != -1) {
       var prev = ws.id;
