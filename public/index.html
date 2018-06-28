@@ -7,18 +7,29 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
     crossorigin="anonymous">
+  <!-- flaticon by FreePik -->
+  <link rel="icon" href="hacker.png">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 </head>
 
 <body class="main">
   <div class="container">
+      <a href="https://github.com/skywalker212/cyber-chat" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>
     <h1 class="text-center heading">Cyberchat Client</h1>
     <div class="messages">
     </div>
-    <form action="javascript:void(0)">
-      <label for="message" style="font-weight:bold;color:white">&gt;</label>
-      <input type="text" id="message" required autofocus />
-    </form>
+    <div class='msg-input'>
+      <label class="label" for="message">Message:</label>
+      <textarea placeholder="type your message here" rows="1" id="message" required autofocus />
+      </textarea>
+    </div>
+    <p class="text-center">made with
+        <span style="color: 'red'">❤️</span> by
+        <a href="https://github.com/skywalker212" style="text-decoration: 'none';color: white"
+          target="_blank">akash</a>
+      </p>
   </div>
+  
 
   <script>
     var host = location.origin.replace(/^http/, 'ws')
@@ -35,22 +46,27 @@
     ws.onmessage = function (payload) {
       printMessage(payload.data);
     }
-
-    document.forms[0].onsubmit = function () {
-      var input = document.getElementById('message');
-      ws.send(input.value);
-      input.value = '';
-    };
+    
+    $('#message').bind('keydown', (e) => {
+      if (e.shiftKey && e.keyCode == 13) {
+        e.target.value = e.target.value + '\n';
+        e.preventDefault();
+      } else if (e.keyCode == 13) {
+        var val = e.target.value;
+        ws.send(val.trim());
+        $('#message').val('');
+      }
+    });
 
     function setTitle(title) {
       document.querySelector('h1').innerHTML = title;
     }
 
     function printMessage(message) {
-      var p = document.createElement('p');
-      p.innerHTML = message;
-      p.className = 'msg';
-      document.querySelector('div.messages').appendChild(p);
+      var div = document.createElement('div');
+      div.innerHTML = message;
+      if (message.indexOf('pre') != -1) div.className = 'msg';
+      document.querySelector('div.messages').appendChild(div);
     }
   </script>
 </body>
