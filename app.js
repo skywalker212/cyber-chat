@@ -1,17 +1,15 @@
-const WebSocketServer = require('ws').Server;
+const SocketServer = require('ws').Server;
 const express = require('express');
-const http = require('http');
+const path = require('path');
 var cid = 1;
+const PORT = process.env.PORT || 3000;
 var messages = [];
 
-const app = new express();
-const server = http.createServer(app);
+const app = express()
+  .use(express.static("./public"))
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
-var wss = new WebSocketServer({
-  port: 3000
-});
-
-app.use(express.static("./public"));
+const wss = new SocketServer({ server:app });
 
 wss.on('connection', function(ws) {
   ws.send('<span class="serv-label">Server> </span>W3lc0m3 70 cyb3r cha7.');
@@ -38,8 +36,6 @@ wss.on('connection', function(ws) {
     }
   });
 });
-
-app.listen(420);
 
 function sendToAll(message) {
   wss.clients.forEach(function(client) {
