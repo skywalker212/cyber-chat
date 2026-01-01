@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/skywalker212/cyber-chat#readme",
   "dependencies": {
-    "express": "^4.15.5",
+    "express": "^4.22.1",
     "ws": "^5.2.4"
   }
 }
